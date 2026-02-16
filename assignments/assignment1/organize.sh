@@ -3,7 +3,7 @@
 mkdir -p PDFs Images Text
 
 for file in *; do
-  # skip directories
+  
   [ -f "$file" ] || continue
 
   case "$file" in
