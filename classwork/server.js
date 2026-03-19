@@ -1,24 +1,29 @@
-const http = require("http");
-const fs = require("fs");
+const express = require("express");
 
-const server = http.createServer((req, res) => {
+const app = express();
 
-    
-    const time = new Date().toLocaleString();
+app.get("/sum", (req, res) => {
+    const sum = parseInt(req.query.a)+ parseInt(req.query.b);
+    res.send(sum.toLocaleString())
+})
 
-    
-    const log = `${time} - ${req.url}\n`;
+app.get("/sub", (req, res) => {
+    const sub = parseInt(req.query.a)-parseInt(req.query.b);
+    res.send(sub.toLocaleString())
+})
 
-   
-    fs.appendFile("log.txt", log, (err) => {
-        if (err) {
-            console.log("Error writing log");
-        }
-    });
+app.get("/div", (req, res) => {
+    const div = parseInt(req.query.a)/parseInt(req.query.b);
+    res.send(div.toLocaleString())
+})
 
-    res.end("Request received");
-});
+app.get("/mul", (req, res) => {
+    const mul = parseInt(req.query.a)*parseInt(req.query.b);
+    res.send(mul.toLocaleString())
+})
 
-server.listen(3000, () => {
-    console.log("Server running on port 3000");
-});
+
+
+app.listen(3000, ()=> {
+    console.log("server is running at port 3000");
+})
